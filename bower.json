@@ -1,0 +1,29 @@
+{
+  "name": "elevator-saga",
+  "homepage": "http://play.elevatorsaga.com/",
+  "authors": [
+    "Magnus Wolffelt"
+  ],
+  "description": "http://play.elevatorsaga.com/",
+  "main": "index.js",
+  "keywords": [
+    "elevator",
+    "programming",
+    "game",
+    "JavaScript",
+    "play",
+    "puzzle"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcabin-play": "^1.0.6"
+  }
+}
