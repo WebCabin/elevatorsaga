@@ -2,87 +2,88 @@
 var createEditor = function() {
     var lsKey = "elevatorCrushCode_v5";
 
-    var cm = CodeMirror.fromTextArea(document.getElementById("code"), {
-        lineNumbers: true,
-        indentUnit: 4,
-        indentWithTabs: false,
-        theme: "solarized light",
-        mode: "javascript",
-        autoCloseBrackets: true,
-        extraKeys: {
-            // the following Tab key mapping is from http://codemirror.net/doc/manual.html#keymaps
-            Tab: function(cm) {
-                var spaces = new Array(cm.getOption("indentUnit") + 1).join(" ");
-                cm.replaceSelection(spaces);
-            }
-        }
-    });
 
-    // reindent on paste (adapted from https://github.com/ahuth/brackets-paste-and-indent/blob/master/main.js)
-    cm.on("change", function(codeMirror, change) {
-        if(change.origin !== "paste") {
-            return;
-        }
+    // var cm = CodeMirror.fromTextArea(document.getElementById("code"), {
+    //     lineNumbers: true,
+    //     indentUnit: 4,
+    //     indentWithTabs: false,
+    //     theme: "solarized light",
+    //     mode: "javascript",
+    //     autoCloseBrackets: true,
+    //     extraKeys: {
+    //         // the following Tab key mapping is from http://codemirror.net/doc/manual.html#keymaps
+    //         Tab: function(cm) {
+    //             var spaces = new Array(cm.getOption("indentUnit") + 1).join(" ");
+    //             cm.replaceSelection(spaces);
+    //         }
+    //     }
+    // });
 
-        var lineFrom = change.from.line;
-        var lineTo = change.from.line + change.text.length;
+    // // reindent on paste (adapted from https://github.com/ahuth/brackets-paste-and-indent/blob/master/main.js)
+    // cm.on("change", function(codeMirror, change) {
+    //     if(change.origin !== "paste") {
+    //         return;
+    //     }
 
-        function reindentLines(codeMirror, lineFrom, lineTo) {
-            codeMirror.operation(function() {
-                codeMirror.eachLine(lineFrom, lineTo, function(lineHandle) {
-                    codeMirror.indentLine(lineHandle.lineNo(), "smart");
-                });
-            });
-        }
+    //     var lineFrom = change.from.line;
+    //     var lineTo = change.from.line + change.text.length;
 
-        reindentLines(codeMirror, lineFrom, lineTo);
-    });
+    //     function reindentLines(codeMirror, lineFrom, lineTo) {
+    //         codeMirror.operation(function() {
+    //             codeMirror.eachLine(lineFrom, lineTo, function(lineHandle) {
+    //                 codeMirror.indentLine(lineHandle.lineNo(), "smart");
+    //             });
+    //         });
+    //     }
+
+    //     reindentLines(codeMirror, lineFrom, lineTo);
+    // });
 
     var reset = function() {
-        cm.setValue($("#default-elev-implementation").text().trim());
+        // cm.setValue($("#default-elev-implementation").text().trim());
     };
     var saveCode = function() {
-        localStorage.setItem(lsKey, cm.getValue());
-        $("#save_message").text("Code saved " + new Date().toTimeString());
-        returnObj.trigger("change");
+        // localStorage.setItem(lsKey, cm.getValue());
+        // $("#save_message").text("Code saved " + new Date().toTimeString());
+        // returnObj.trigger("change");
     };
 
     var existingCode = localStorage.getItem(lsKey);
     if(existingCode) {
-        cm.setValue(existingCode);
+        // cm.setValue(existingCode);
     } else {
         reset();
     }
 
     $("#button_save").click(function() {
         saveCode();
-        cm.focus();
+        // cm.focus();
     });
 
     $("#button_reset").click(function() {
-        if(confirm("Do you really want to reset to the default implementation?")) {
-            localStorage.setItem("develevateBackupCode", cm.getValue());
-            reset();
-        }
-        cm.focus();
+        // if(confirm("Do you really want to reset to the default implementation?")) {
+        //     localStorage.setItem("develevateBackupCode", cm.getValue());
+        //     reset();
+        // }
+        // cm.focus();
     });
 
     $("#button_resetundo").click(function() {
-        if(confirm("Do you want to bring back the code as before the last reset?")) {
-            cm.setValue(localStorage.getItem("develevateBackupCode") || "");
-        }
-        cm.focus();
+        // if(confirm("Do you want to bring back the code as before the last reset?")) {
+        //     cm.setValue(localStorage.getItem("develevateBackupCode") || "");
+        // }
+        // cm.focus();
     });
 
     var returnObj = riot.observable({});
     var autoSaver = _.debounce(saveCode, 1000);
-    cm.on("change", function() {
-        autoSaver();
-    });
+    // cm.on("change", function() {
+    //     autoSaver();
+    // });
 
     returnObj.getCodeObj = function() {
         console.log("Getting code...");
-        var code = cm.getValue();
+        var code = '';//cm.getValue();
         var obj;
         try {
             obj = getCodeObjFromCode(code);
@@ -94,13 +95,14 @@ var createEditor = function() {
         return obj;
     };
     returnObj.setCode = function(code) {
-        cm.setValue(code);
+        // cm.setValue(code);
     };
     returnObj.getCode = function() {
-        return cm.getValue();
+        // return cm.getValue();
+        return '';
     }
     returnObj.setDevTestCode = function() {
-        cm.setValue($("#devtest-elev-implementation").text().trim());
+        // cm.setValue($("#devtest-elev-implementation").text().trim());
     }
 
     $("#button_apply").click(function() {
