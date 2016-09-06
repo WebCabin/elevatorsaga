@@ -1,7 +1,17 @@
 
 var createEditor = function() {
-    var lsKey = "elevatorCrushCode_v5";
+    var lsKey = "elevatorCrushCode_v1_play";
 
+    var play = new wcPlay();
+    var editor = new wcPlayEditor('#code');
+    editor.engine(play);
+
+    // Remove un-needed menu items.
+
+    // Disable page scrolling when using mouse wheel inside the play editor.
+    $('#code').bind('mousewheel DOMMouseScroll', function(e) {
+        e.preventDefault();
+    })
 
     // var cm = CodeMirror.fromTextArea(document.getElementById("code"), {
     //     lineNumbers: true,

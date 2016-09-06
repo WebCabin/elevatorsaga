@@ -2,7 +2,7 @@
 
 html, body {
     background-color: #BFBD9F;
-    color: white;
+    /*color: white;*/
     margin: 0;
     padding: 0;
 }
@@ -152,6 +152,20 @@ button.right {
     margin-right: 10px;
 }
 
+#codecontainer {
+    position: relative;
+    border: 1px solid black;
+    width: 1220px;
+    height: 500px;
+}
+
+#code {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
 
 .codestatus {
     padding-top: 10px;
@@ -365,7 +379,7 @@ button.right {
 
 .doctable th, .doctable td  {
     text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0,l 0, 0, 0.1);
 }
 
 .doctable tr td:first-child {
