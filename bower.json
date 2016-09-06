@@ -24,6 +24,6 @@
     "tests"
   ],
   "dependencies": {
-    "webcabin-play": "^1.0.6"
+    "webcabin-play": "1.*.*"
   }
 }
